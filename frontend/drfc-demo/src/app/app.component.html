@@ -1,0 +1,28 @@
+<nav class="navbar is-primary">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#" *ngIf="usuario">
+      <span>Hola </span><strong> @{{usuario.username}}</strong>!
+    </a>
+    <a class="navbar-item" href="#" *ngIf="!usuario">
+        #pyConAr2018
+      </a>
+    <a class="navbar-item" href="#" *ngIf="perfil" >
+        TEMP: {{ perfil.temperatura_pref }}
+    </a>
+    <a class="navbar-item" href="#" *ngIf="perfil" >
+      VIENTO: {{ perfil.viento_pref }}
+    </a>
+    <a class="navbar-item" href="#" *ngIf="perfil" >
+      LLUVIA: {{ perfil.lluvia_pref }}
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" (click)="logout()">
+        Cerrar sesión
+      </a>
+
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

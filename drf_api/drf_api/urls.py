@@ -26,6 +26,6 @@ router.register(r'registro', RegistroViewSet, 'registro')
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/perfil/', PerfilUsuarioView.as_view(), name='api-perfil'),
-    path('api-auth', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import MethodNotAllowed
 
+from api.fields import VientoField, LluviaField, TemperaturaField
 from core.models import Perfil, Registro
 
 
@@ -24,6 +25,9 @@ class PerfilSerializer(serializers.ModelSerializer):
 
 class RegistroSerializer(serializers.ModelSerializer):
     nombre_usuario = serializers.CharField(read_only=True, source="usuario.username")
+    temperatura = TemperaturaField()
+    viento = VientoField()
+    lluvia = LluviaField()
 
     class Meta:
         model = Registro
