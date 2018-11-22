@@ -1,4 +1,59 @@
-<p>
-  home works!
-  {{ registros | json }}
-</p>
+<section class="section">
+  <div class="container">
+    <div class="box" *ngIf="agregando" >
+    <form>
+      <h3 class="subtitle">Nuevo registro</h3>
+      <div class="field">
+        <div class="control">
+          <input class="input" type="number" autocomplete=off
+            placeholder="Temperatura en {{ perfil.temperatura_pref }}"
+            name="temperatura" [(ngModel)]="registro.temperatura"/>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input class="input" type="number" autocomplete=off
+            placeholder="Viento en {{ perfil.viento_pref }}"
+            name="viento" [(ngModel)]="registro.viento">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <input class="input" type="number" autocomplete=off
+            placeholder="Lluvia en {{ perfil.lluvia_pref }}s"
+            name="lluvia" [(ngModel)]="registro.lluvia">
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary" (click)="guardarNuevo()">Añadir</button>
+          </div>
+          <div class="control">
+            <button class="button is-link" (click)="closeFormNuevo()">Cancelar</button>
+          </div>
+        </div>
+    </form>
+    </div>
+    <h2 class="title">Registros  <a class="button is-primary" (click)="openFormNuevo()"><i class="fa fa-plus"></i></a></h2>
+    <div class="box" *ngFor="let item of registros">
+      <div class="content">
+        <ul>
+          <li>
+              Temperatura: {{ item.temperatura | number: "0.1-2" }} {{ perfil.temperatura_pref }}
+          </li>
+          <li>
+              Viento: {{ item.viento | number: "0.1-2" }} {{ perfil.viento_pref }}
+          </li>
+          <li>
+            Lluvia: {{ item.lluvia | number: "0.1-2" }} {{ perfil.lluvia_pref }}
+          </li>
+        </ul>
+        <strong>Enviado por: {{ item.nombre_usuario }}</strong>
+      </div>
+    </div>
+    <div class="notification is-success" *ngIf="registros.length == 0" >
+      Sin registros hasta el momento.
+    </div>
+  </div>
+</section>

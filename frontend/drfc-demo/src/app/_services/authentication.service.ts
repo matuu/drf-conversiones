@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Perfil } from '../_models/perfil';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
     user: any = {};
-    perfil: any = {};
+    perfil: Perfil;
 
     constructor(private http: HttpClient) { }
 
@@ -16,7 +17,7 @@ export class AuthenticationService {
             Authorization: `Basic ${encodeAuth}`
         };
         console.log(headers);
-        return this.http.get<any>(`http://127.0.0.1:8000/api/perfil/`, { headers: headers })
+        return this.http.get<Perfil>(`http://127.0.0.1:8000/api/perfil/`, { headers: headers })
             .pipe(map(perfil => {
                 if (perfil) {
                     // store user details and basic auth credentials in local storage

@@ -6,10 +6,10 @@ def mm_a_pulgadas(valor):
     1mm = (1/25.4)″ = 0.03937007874″ --> d(″) = d(mm) / 25.4
     """
     try:
-        return (valor / Decimal('25.4')).quantize(Decimal('0.001'))
+        return (valor / Decimal('25.4'))
     except TypeError:
         valor = Decimal("%s" % valor)
-        return (valor / Decimal('25.4')).quantize(Decimal('0.001'))
+        return (valor / Decimal('25.4'))
 
 
 def pulgadas_a_mm(valor):
@@ -17,10 +17,10 @@ def pulgadas_a_mm(valor):
     1″ = 25.4mm --> d(mm) = d(″) × 25.4
     """
     try:
-        return (valor * Decimal('25.4')).quantize(Decimal('0.001'))
+        return (valor * Decimal('25.4'))
     except TypeError:
         valor = Decimal("%s" % valor)
-        return (valor * Decimal('25.4')).quantize(Decimal('0.001'))
+        return (valor * Decimal('25.4'))
 
 
 def temp_f_2_c(temp):
@@ -29,7 +29,7 @@ def temp_f_2_c(temp):
     T(°C) = (T(°F) -32) / 1.8
     """
     tf = (Decimal("%s" % temp) - 32) / Decimal("1.8")
-    return tf.quantize(Decimal("0.001"))
+    return tf
 
 
 def temp_c_2_f(temp):
@@ -38,7 +38,7 @@ def temp_c_2_f(temp):
     T(°F) = (T(°C) * 1.8) + 32
     """
     tc = (Decimal("%s" % temp) * Decimal("1.8")) + 32
-    return tc.quantize(Decimal("0.001"))
+    return tc
 
 
 def mph_a_kms(mps):
@@ -48,12 +48,12 @@ def mph_a_kms(mps):
     1 km = 0.6214 miles
     """
     kms = Decimal("%s" % mps) * Decimal("1.6093440")
-    return kms.quantize(Decimal('0.001'))
+    return kms
 
 
 def kms_a_mph(kms):
     mps = Decimal("%s" % kms) * Decimal('0.6214')
-    return mps.quantize(Decimal('0.001'))
+    return mps
 
 
 def lluvia_desde_api(perfil, valor):

@@ -7,40 +7,40 @@ from core.utils import (
     temperatura_desde_api, temperatura_para_api)
 
 
-class LluviaField(serializers.Field):
+class ConPerfilMixin(object):
+    @property
+    def perfil(self):
+        return self.context["user"].perfil
+
+
+class LluviaField(ConPerfilMixin, serializers.Field):
     """
     Campo para el manejo de los datos de lluvia
     """
     def to_representation(self, value):
-        perfil = self.context["user"].perfil
-        return lluvia_para_api(perfil, value)
+        return lluvia_para_api(self.perfil, value)
 
     def to_internal_value(self, data):
-        perfil = self.context["user"].perfil
-        return lluvia_desde_api(perfil, data)
+        return lluvia_desde_api(self.perfil, data)
 
 
-class VientoField(serializers.Field):
+class VientoField(ConPerfilMixin, serializers.Field):
     """
     Campo para el manejo de los datos de viento
     """
     def to_representation(self, value):
-        perfil = self.context["user"].perfil
-        return viento_para_api(perfil, value)
+        return viento_para_api(self.perfil, value)
 
     def to_internal_value(self, data):
-        perfil = self.context["user"].perfil
-        return viento_desde_api(perfil, data)
+        return viento_desde_api(self.perfil, data)
 
 
-class TemperaturaField(serializers.Field):
+class TemperaturaField(ConPerfilMixin, serializers.Field):
     """
     Campo para el manejo de los datos de temperatura
     """
     def to_representation(self, value):
-        perfil = self.context["user"].perfil
-        return temperatura_para_api(perfil, value)
+        return temperatura_para_api(self.perfil, value)
 
     def to_internal_value(self, data):
-        perfil = self.context["user"].perfil
-        return temperatura_desde_api(perfil, data)
+        return temperatura_desde_api(self.perfil, data)
